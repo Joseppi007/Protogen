@@ -26,9 +26,10 @@
 *   (<) Jumps like (j) only if regester A < regester B
 *   (r) Jumps like (j), but once the program hits a (\x00) the line after this one is jumped to.
 *   (\x00) This indecates the end of a piece of code and either ends the program or pops a value off the stack of addresses to return to provided by (r).
-*   (,) Takes a character as input and stored the byte in regester C.
+*   (,) Takes a character as input and stored the byte in regester C. This can be repeated for each character of input, and regester E will be one for the last character inputted and zero for all before.
 *   (.) Outputs regester A as a character (unicode in this case, but ASCII would be better.)
 *   (;) Takes a number as input and stores the byte in regester C.
 *   (:) Outputs regester A as an integer.
+*   (?) Sets the C regester to a random number between regester A and B inclusive
 *  
 *  Regesters A and B are input, and regester C and E are output. Regester C is the primary output, and regester E is used to indecate possible errors like over/underflow.
