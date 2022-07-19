@@ -1,4 +1,5 @@
 import sys
+import random
 
 def bytes_to_int (b) : # Turns the bytes to an int with the bytes in the correct order
     return bytes_to_int_reverse_order(b[::-1])
@@ -12,6 +13,7 @@ WIDTH = 4 # Replaced with 2**(the first byte of the file)
 
 depth_stack = []
 regesters = {'A':0,'B':0,'C':0,'E':0}
+character_input_que = ''
 
 file_path = sys.argv[1]
 
@@ -83,13 +85,22 @@ while len(depth_stack) > 0 :
                 depth_stack.append(current_line_position+WIDTH)
                 current_line_position = bytes_to_int_reverse_order(current_line[1:]) - WIDTH
             case 44: #, # Input char (Like BrainF***) (Store in [C])
-                regesters['C'] = ord(input()[0])
+                while len(character_input_que) == 0 :
+                    character_input_que += input()
+                regesters['E'] = 1 if len(character_input_que)==1 else 0 # [E] is one for end of input
+                regesters['C'] = ord(character_input_que[0])
+                character_input_que = character_input_que[1:]
             case 59: #; # Input unsigned 8-bit int (Store in [C])
-                regesters['C'] = input()%256
+                character_input_que = ''
+                i = int(input())
+                regesters['C'] = i%256
+                regesters['E'] = 0 if i == regesters['C'] else 1
             case 46: #. # Output char (Like BrainF***) (Get from [A])
                 print(chr(regesters['A']), end='')
             case 58: #: # Output unsigned 8-bit int (Get from [A])
                 print(regesters['A'], end='')
+            case 63: #? # Set [C] to a random number between [A] and [B] inclusive
+                regesters['C'] = random.randint(regesters['A'], regesters['B'])
             case 0: #Nothing # Go back to the last thing in the depth_stack and pop that bad boi
                 break # Do this via breaking out of the while True
             case _:
