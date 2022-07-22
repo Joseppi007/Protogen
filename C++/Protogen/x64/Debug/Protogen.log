@@ -1,0 +1,3 @@
+﻿  Protogen.cpp
+C:\MyFiles\Recreational\C++\Protogen\Protogen\Protogen.cpp(14,2): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned long', possible loss of data
+  Protogen.vcxproj -> C:\MyFiles\Recreational\C++\Protogen\x64\Debug\Protogen.exe
