@@ -15,7 +15,7 @@ unsigned long paramsAsAddress(std::vector<char> params)
 	for (unsigned long i = params.size(); i > 0; i--)
 	{
 		address *= 256;
-		address += params[i-1];
+		address += (unsigned char)(params[i-1]);
 	}
 	return address;
 }
@@ -24,7 +24,7 @@ void protogen(char *filePath)
 {
 	std::vector<unsigned long> depthStack = std::vector<unsigned long>();
 	std::string characterInputQue = std::string();
-	char regesterA = 0, regesterB = 0, regesterC = 0, regesterE = 0;
+	unsigned char regesterA = 0, regesterB = 0, regesterC = 0, regesterE = 0;
 	unsigned long width = 4;
 	std::ifstream file(filePath, std::ios::binary);
 	std::vector<char> srcCode ((std::istreambuf_iterator<char>(file)),(std::istreambuf_iterator<char>()));
