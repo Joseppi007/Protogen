@@ -166,7 +166,7 @@ void protogen(char *filePath)
 				std::cout << (unsigned int)regesterA;
 				break;
 			case '?':
-				regesterC = 0;
+				regesterC = regesterA + rand() % (regesterB - regesterA + 1);
 				regesterE = 0;
 				break;
 			}
