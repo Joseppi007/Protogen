@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iterator>
 #include <conio.h>
+#include <time.h>
 
 unsigned long paramsAsAddress(std::vector<char> params)
 {
@@ -182,11 +183,17 @@ void protogen(char *filePath)
 
 int main(int argc, char *argv[])
 {
+	srand((unsigned int)std::time(0));
+
 	if (argc == 1)
 	{
-		std::string tmp = std::string();
-		std::cout << "Umm... Think you can put the path to the code in as a command line argument?\nI think Windows will let you open the file with this code and that should work probably.\n\n[ENTER] to stop. ";
-		std::getline(std::cin, tmp);
+		std::cout << "Umm... Think you can put the path to the code in as a command line argument?\nI think Windows will let you open the file with this code and that should work probably.\n\nPress any key. ";
+		_getch();
+		std::cout << "\nActually, why don't you just give me the path now? (Just use the command line arguments next time, ok?)\nPATH> ";
+		std::string thePath;
+		std::cin >> thePath;
+		std::cout << "Ok, I'll run " << thePath << "now...\n\n";
+		protogen((char*)thePath.c_str());
 	}
 	for (int i = 1; i < argc; i++)
 	{
@@ -194,9 +201,8 @@ int main(int argc, char *argv[])
 	}
 	if (argc > 2)
 	{
-		std::string tmp = std::string();
 		std::cout << "\n\nAll programs have been run. Press [ENTER] to stop. ";
-		std::getline(std::cin, tmp);
+		_getch();
 	}
 }
 
