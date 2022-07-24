@@ -29,6 +29,7 @@ void protogen(char *filePath)
 	unsigned long width = 4;
 	std::ifstream file(filePath, std::ios::binary);
 	std::vector<char> srcCode ((std::istreambuf_iterator<char>(file)),(std::istreambuf_iterator<char>()));
+	file.close();
 
 	width = 1;
 	for (int i = srcCode[0]; i > 0; i--)
@@ -198,12 +199,15 @@ int main(int argc, char *argv[])
 	for (int i = 1; i < argc; i++)
 	{
 		protogen(argv[i]);
+		delete argv[i];
 	}
 	if (argc > 2)
 	{
 		std::cout << "\n\nAll programs have been run. Press [ENTER] to stop. ";
 		_getch();
 	}
+
+	delete argv;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
