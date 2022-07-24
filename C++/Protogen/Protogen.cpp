@@ -92,7 +92,7 @@ void protogen(char *filePath)
 				}
 				else
 				{
-					regesterE = 1;
+					regesterE = 255;
 				}
 				break;
 			case '&':
@@ -133,6 +133,7 @@ void protogen(char *filePath)
 				currentLinePosition = paramsAsAddress(params) - width;
 				break;
 			case 0:
+			case '0':
 				runningCodeBlock = false;
 				break;
 			case ',':
