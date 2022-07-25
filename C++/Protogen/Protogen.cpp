@@ -140,22 +140,30 @@ void protogen(char *filePath)
 				runningCodeBlock = false;
 				break;
 			case ',':
-				while (characterInputQue.size() == 0)
+				if (characterInputQue.size() == 0)
 				{
 					std::string in;
 					std::getline(std::cin, in);//std::cin >> in;
 					characterInputQue += in;
 				}
-				if (characterInputQue.size() == 1)
+				if (characterInputQue.size() == 0)
 				{
 					regesterE = 1;
+					regesterC = 0;
 				}
 				else
 				{
-					regesterE = 0;
+					if (characterInputQue.size() == 1)
+					{
+						regesterE = 1;
+					}
+					else
+					{
+						regesterE = 0;
+					}
+					regesterC = characterInputQue[0];
+					characterInputQue = characterInputQue.substr(1);
 				}
-				regesterC = characterInputQue[0];
-				characterInputQue = characterInputQue.substr(1);
 				break;
 			case '.':
 				std::cout << regesterA;
