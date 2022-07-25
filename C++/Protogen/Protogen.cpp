@@ -53,6 +53,7 @@ void protogen(char *filePath)
 			}
 			signed int shouldBe; // Where do I put this?
 			unsigned short int in;
+			std::string s;
 			switch (srcCode[currentLinePosition])
 			{
 			case 'A':
@@ -142,7 +143,7 @@ void protogen(char *filePath)
 				while (characterInputQue.size() == 0)
 				{
 					std::string in;
-					std::cin >> in;
+					std::getline(std::cin, in);//std::cin >> in;
 					characterInputQue += in;
 				}
 				if (characterInputQue.size() == 1)
@@ -162,6 +163,7 @@ void protogen(char *filePath)
 			case ';':
 				characterInputQue = "";
 				std::cin >> in;
+				std::getline(std::cin, s);
 				regesterC = in % 256;
 				regesterE = (in / 256) % 256;
 				break;
