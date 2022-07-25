@@ -85,11 +85,15 @@ while len(depth_stack) > 0 :
                 depth_stack.append(current_line_position+WIDTH)
                 current_line_position = bytes_to_int_reverse_order(current_line[1:]) - WIDTH
             case 44: #, # Input char (Like BrainF***) (Store in [C])
-                while len(character_input_que) == 0 :
+                if len(character_input_que) == 0 :
                     character_input_que += input()
-                regesters['E'] = 1 if len(character_input_que)==1 else 0 # [E] is one for end of input
-                regesters['C'] = ord(character_input_que[0])
-                character_input_que = character_input_que[1:]
+                if len(character_input_que) == 0 :
+                    regesters['E'] = 1
+                    regesters['C'] = 0
+                else :
+                    regesters['E'] = 1 if len(character_input_que)==1 else 0 # [E] is one for end of input
+                    regesters['C'] = ord(character_input_que[0])
+                    character_input_que = character_input_que[1:]
             case 59: #; # Input unsigned 8-bit int (Store in [C])
                 character_input_que = ''
                 i = int(input())
